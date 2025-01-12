@@ -1,0 +1,21 @@
+name: containers
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build-and-push-containers:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build and push containers
+        run: cd containers && ./build-and-push.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
