@@ -21,7 +21,12 @@ done
 # check if github token is provided, then push to registry
 if [ -n "${GITHUB_TOKEN}" ]
 then
-  for containerfile in ./Containerfile.*
+  # login to registry
+  registry=$(echo "${base_url}" | cut -d '/' -f 1)
+  user=$(echo "${base_url}" | cut -d '/' -f 2)
+  echo "${GITHUB_TOKEN}" | "${ce}" login "${registry}" -u "${user}" --password-stdin
+
+  for containerfile in Containerfile.*
   do
     image=$(_get_image "${containerfile}")
     echo "Pushing ${image}"
