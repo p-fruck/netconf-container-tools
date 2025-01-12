@@ -1,0 +1,7 @@
+ARG fedora_version=latest
+
+FROM fedora:${fedora_version}
+
+RUN sudo dnf install -y netopeer2
+
+ENTRYPOINT ["netopeer2-cli"]

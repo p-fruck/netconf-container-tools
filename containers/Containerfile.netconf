@@ -1,0 +1,9 @@
+ARG netconf_version=v3.5.1
+
+FROM ghcr.io/p-fruck/netconf-container-tools/libyang
+
+RUN git clone https://github.com/CESNET/libnetconf2 -b ${netconf_version}
+WORKDIR /app/libnetconf2
+RUN cmake . && make install
+
+WORKDIR /app
