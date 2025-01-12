@@ -6,8 +6,8 @@ base_url=ghcr.io/p-fruck/netconf-container-tools
 # which container engine to use
 ce=podman
 
-function _get_image() {
-  image=$(echo $1 | cut -d '.' -f 2)
+_get_image() {
+  image=$(echo "$1" | cut -d '.' -f 2)
   echo "${base_url}/${image}"
 }
 
