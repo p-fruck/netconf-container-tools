@@ -2,7 +2,7 @@ ARG fedora_version=latest
 ARG yang_version=v3.4.2
 
 FROM fedora:${fedora_version}
-RUN dnf install -y cmake make openssl-devel libcurl-devel libyang-devel
+RUN dnf install -y cmake make gcc git libyang-devel
 
 WORKDIR /app
 RUN git clone https://github.com/CESNET/libyang -b v3.4.2
